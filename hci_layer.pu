@@ -1,0 +1,41 @@
+@startuml
+interface hci_transport_api {
+    hci_nitialize()
+    hci_transmit(BT_HDR*)
+    hci_close()
+}
+
+interface hci_transport_evt {
+    hci_event_recieved(Location, BT_HDR*)
+    acl_event_recieved(BT_HDR*)
+    sco_data_recieved(BT_HDR*)
+}
+
+interface module_t {
+    name
+    dependecies
+    init()
+    start_up()
+    shut_down()
+    clean_up()
+}
+
+interface hci_t{
+    set_data_cb( callback ) /*callback(Location&, BT_HDR*)*/
+    transmit_command(BT_HDR* command, command_complete_cb, command_status_cb, void * context )
+    transmit_command_futured(BT_HDR*)
+    transmit_downward(uint16_t type, void* data )
+}
+
+class package_segment{
+}
+
+package hci_layer {
+}
+
+hci_layer -|> module_t
+hci_layer -|> hci_t
+hci_layer -|> hci_transport_evt
+hci_layer -> hci_transport_api
+hci_layer -> package_segment
+@enduml
