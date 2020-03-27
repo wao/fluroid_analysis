@@ -1,0 +1,10 @@
+@startuml
+interface module_t {
+    name
+    dependecies
+    init()
+    start_up()
+    shut_down()
+    clean_up()
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+interface hci_transport_api <<static functions>> {
+    hci_nitialize()
+    hci_transmit(BT_HDR*)
+    hci_close()
+}
+
+interface hci_transport_evt <<static functions>> {
+    hci_event_recieved(Location, BT_HDR*)
+    acl_event_recieved(BT_HDR*)
+    sco_data_recieved(BT_HDR*)
+}
+@enduml
